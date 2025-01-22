@@ -6,9 +6,9 @@ from tokenizer import tokenize_data, save_tokenized_data, load_tokenized_data
 from dataloader import split_load_data
 from model import init_model, init_optimizer, init_loss_function, init_scheduler
 from training import train_model
-from evaluate import evaluate_accuracy
+from evaluate import evaluate_accuracy, evaluate_uncertainty
 
-def main(output_file, force_update, model_save_path, train_flag, eval_flag, EPOCHS):
+def main(output_file, force_update, model_save_path, train_flag, eval_flag, EPOCHS, uncertainty_flag, dropout_rate):
     if torch.cuda.is_available():
         device = torch.device('cuda:0')
     else:
@@ -29,7 +29,8 @@ def main(output_file, force_update, model_save_path, train_flag, eval_flag, EPOC
 
     print("Tokenized Data ready")
 
-    train_dataloader, val_dataloader = split_load_data(token_ids, attention_masks, labels, device)
+    # If uncertainty_flag is set, we don't need to make a test dataset as a batch, just single data
+    train_dataloader, test_dataloader = split_load_data(token_ids, attention_masks, labels, device, uncertainty_flag)
     print("DataLoaders ready")
 
     model = init_model(device)
@@ -43,9 +44,13 @@ def main(output_file, force_update, model_save_path, train_flag, eval_flag, EPOC
     if eval_flag:
         if not os.path.exists(model_save_path):
             raise FileNotFoundError(f"Model file not found at {model_save_path}")
-        acc, loss = evaluate_accuracy(val_dataloader, model_save_path, device)
-        print(f"Validation accuracy: {acc}")
-        print(f"Validation loss: {loss}")
+        if uncertainty_flag:
+            print("Evaluating with uncertainty quantification")
+            evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
+        else:
+            acc, loss = evaluate_accuracy(test_dataloader, model_save_path, device)
+            print(f"Validation accuracy: {acc}")
+            print(f"Validation loss: {loss}")
 
     
 
@@ -61,6 +66,8 @@ if __name__ == "__main__":
     parser.add_argument('--train', action='store_true', help="Train the model")
     parser.add_argument('--evaluate', action='store_true', help="Evaluate the model")
     parser.add_argument('--epochs', type=int, default=2, help="Number of epochs to train the model")
+    parser.add_argument('--uncertainty', action='store_true', help="Use uncertainty quantification")
+    parser.add_argument('--dropout-rate', type=float, default=0.1, help="Dropout rate for uncertainty quantification")
     args = parser.parse_args()
 
     if not (args.train or args.evaluate):
@@ -74,4 +81,4 @@ if __name__ == "__main__":
     elif args.evaluate:
         print("Evaluating the model...")
 
-    main(args.tokenize_data_output, args.force_update, args.model_save_path, args.train, args.evaluate, args.epochs)
+    main(args.tokenize_data_output, args.force_update, args.model_save_path, args.train, args.evaluate, args.epochs, args.uncertainty, args.dropout_rate)

@@ -1,4 +1,4 @@
 bert/tokenized_data.pkl
 bert/IMDB Dataset.csv
 bert/imdb-dataset-of-50k-movie-reviews.zip
-bert/checkpoints/checkpoint_20250110_084205_epoch10.pt
+bert/checkpoints

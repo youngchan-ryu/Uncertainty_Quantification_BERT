@@ -2,7 +2,7 @@ import torch
 from sklearn.model_selection import train_test_split
 from torch.utils.data import TensorDataset, DataLoader
 
-def split_load_data(token_ids, attention_masks, labels, device):
+def split_load_data(token_ids, attention_masks, labels, device, uncertainty_flag):
     val_size = 0.1
 
     # Split the token IDs
@@ -34,6 +34,9 @@ def split_load_data(token_ids, attention_masks, labels, device):
     train_data = TensorDataset(train_ids, train_masks, train_labels)
     train_dataloader = DataLoader(train_data, shuffle=True, batch_size=16)
     val_data = TensorDataset(val_ids, val_masks, val_labels)
-    val_dataloader = DataLoader(val_data, batch_size=16)
+    if uncertainty_flag:
+        test_dataloader = DataLoader(val_data, batch_size=1)
+    else:
+        test_dataloader = DataLoader(val_data, batch_size=16)
 
-    return train_dataloader, val_dataloader
+    return train_dataloader, test_dataloader

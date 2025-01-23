@@ -2,3 +2,5 @@ bert/tokenized_data.pkl
 bert/IMDB Dataset.csv
 bert/imdb-dataset-of-50k-movie-reviews.zip
 bert/checkpoints
+bert/bert-checkpoints
+bert/wandb

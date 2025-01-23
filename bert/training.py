@@ -49,6 +49,7 @@ def train_model(model, train_dataloader, optimizer, scheduler, EPOCHS, model_sav
                 labels=batch_labels,
                 return_dict=False)
 
+            loss = loss.mean()
             batch_loss = loss.item()
             training_loss += batch_loss
             loss.backward()

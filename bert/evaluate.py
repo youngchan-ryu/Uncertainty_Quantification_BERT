@@ -28,6 +28,19 @@ def calculate_accuracy_gpu(preds, labels):
     accuracy = torch.sum(pred_flat == labels_flat).item() / len(labels_flat)
     return accuracy
 
+def load_model(model, model_save_path):
+    state_dict = torch.load(model_save_path)['model_state_dict']
+    
+    # Remove the 'module.' prefix from keys
+    # Mismatch from DataParallel
+    new_state_dict = {}
+    for k, v in state_dict.items():
+        name = k.replace('module.', '') if k.startswith('module.') else k
+        new_state_dict[name] = v
+    
+    # Load the modified state dict
+    model.load_state_dict(new_state_dict)
+
 def evaluate_accuracy(test_dataloader, model_save_path, device):
     # Conventional evaluating function
     if not os.path.exists(model_save_path):
@@ -37,7 +50,7 @@ def evaluate_accuracy(test_dataloader, model_save_path, device):
         'bert-base-uncased',
         num_labels=2)
 
-    model.load_state_dict(torch.load(model_save_path)['model_state_dict'])
+    load_model(model, model_save_path)
     model.to(device)
     print(f"Model loaded from {model_save_path}")
     model.eval()
@@ -91,14 +104,14 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
         'bert-base-uncased',
         num_labels=2)
 
-    model.load_state_dict(torch.load(model_save_path)['model_state_dict'])
+    load_model(model, model_save_path)
     model.to(device)
     print(f"Model loaded from {model_save_path}")
     print("==========Evaluation started==========")
     
     ## UQ
     enable_mc_dropout(model, dropout_rate)
-    num_samples = 10
+    num_samples = 1
     iteration_sample = 256
     if test_dataloader.batch_size != 1:
         raise ValueError("Batch size of test_dataloader must be 1 for uncertainty evaluation")
@@ -134,17 +147,14 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
                     token_type_ids = None,
                     return_dict=False)
 
-            pred_flat = torch.argmax(logits, axis=1).flatten()
-            pred_list += pred_flat.tolist()
-            logits_list += logits.tolist()
+            pred_flat = torch.argmax(logits, axis=1).flatten() # [iteration_sample]
+            pred_list += pred_flat.tolist() 
+            logits_list += logits.tolist() # [iteration_sample, 2] 
             correct_sample += torch.sum(pred_flat == labels).item()
 
-
-        pred_tensor = torch.tensor(pred_list)
-        logits_tensor = torch.tensor(logits_list)
-        probabilities = torch.nn.functional.softmax(torch.tensor(logits_list), dim=1)
+        probabilities = torch.nn.functional.softmax(torch.tensor(logits_list), dim=1) # [iteration_sample, 2] 
         # prob[1] if pred is 1, prob[0] if pred is 0
-        probabilities_tensor = torch.tensor([prob[1] if pred == 1 else prob[0] for pred, prob in zip(pred_list, probabilities)])
+        probabilities_tensor = torch.tensor([prob[1] if pred == 1 else prob[0] for pred, prob in zip(pred_list, probabilities)]) # [iteration_sample]
 
         # Calculate uncertainty
         mean = torch.mean(probabilities_tensor, axis=0)
@@ -152,10 +162,6 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
         accuracy = correct_sample / len(pred_list)
         ci_95 = 1.96 * torch.sqrt(variance / len(pred_list))
 
-        # print(f"pred_list : {pred_list}")
-        # print(f"logits_list : {logits_list}")
-        # print(f"probabilities : {probabilities.cpu().numpy()}")
-        # print(f"probabilities_tensor : {probabilities_tensor.cpu().numpy()}")
         confidence_level = 0.95
         lower_percentile = (1 - confidence_level) / 2 * 100  # 2.5% for 95% CI
         upper_percentile = (1 + confidence_level) / 2 * 100  # 97.5% for 95% CI

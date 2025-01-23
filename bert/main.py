@@ -10,7 +10,7 @@ from evaluate import evaluate_accuracy, evaluate_uncertainty
 
 def main(output_file, force_update, model_save_path, train_flag, eval_flag, EPOCHS, uncertainty_flag, dropout_rate):
     if torch.cuda.is_available():
-        device = torch.device('cuda:0')
+        device = torch.device('cuda')
     else:
         device = torch.device('cpu')
 

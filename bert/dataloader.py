@@ -32,7 +32,7 @@ def split_load_data(token_ids, attention_masks, labels, device, uncertainty_flag
     val_labels = val_labels.to(device)
 
     train_data = TensorDataset(train_ids, train_masks, train_labels)
-    train_dataloader = DataLoader(train_data, shuffle=True, batch_size=16)
+    train_dataloader = DataLoader(train_data, shuffle=True, batch_size=128)
     val_data = TensorDataset(val_ids, val_masks, val_labels)
     if uncertainty_flag:
         test_dataloader = DataLoader(val_data, batch_size=1)

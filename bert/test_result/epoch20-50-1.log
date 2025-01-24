@@ -1,0 +1,436 @@
+Evaluating the model...
+Loaded Preprocessing data
+Tokenized data loaded from tokenized_data.pkl
+Tokenized Data ready
+DataLoaders ready
+8 GPU exists
+cuda
+Evaluating with uncertainty quantification
+Model loaded from /scratch/connectome/ycryu/UQ/bert/bert-checkpoints/checkpoint_20250123_111101_epoch20.pt
+==========Evaluation started==========
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7884401679039001
+Each stochastic passes..
+Mean: 0.7884402275085449
+Variance: 0.03393382206559181
+95% Confidence Interval: (0.7658743262290955, 0.8110061287879944)
+Class 0: 95% CI = [0.02209339593537153, 0.7198461890220642]
+Class 1: 95% CI = [0.28015380352735525, 0.9779066741466522]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7817341089248657
+Each stochastic passes..
+Mean: 0.781734049320221
+Variance: 0.027740588411688805
+95% Confidence Interval: (0.7613310813903809, 0.802137017250061)
+Class 0: 95% CI = [0.02697795769199731, 0.6686040535569191]
+Class 1: 95% CI = [0.33139594644308096, 0.9730220139026642]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.8000094294548035
+Each stochastic passes..
+Mean: 0.8000094294548035
+Variance: 0.05873556807637215
+95% Confidence Interval: (0.7703210115432739, 0.829697847366333)
+Class 0: 95% CI = [0.10461413953453302, 0.9922294989228249]
+Class 1: 95% CI = [0.007770558295305819, 0.8953858464956284]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.6291585564613342
+Each stochastic passes..
+Mean: 0.6291584968566895
+Variance: 0.08115674555301666
+95% Confidence Interval: (0.5942606925964355, 0.6640563011169434)
+Class 0: 95% CI = [0.09306738898158073, 0.9741611927747726]
+Class 1: 95% CI = [0.025838821893557965, 0.9069325849413872]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.596053957939148
+Each stochastic passes..
+Mean: 0.5960538983345032
+Variance: 0.0776321291923523
+95% Confidence Interval: (0.5619223117828369, 0.6301854848861694)
+Class 0: 95% CI = [0.0585877816192806, 0.9773554354906082]
+Class 1: 95% CI = [0.0226445330772549, 0.9414122477173805]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.7176511287689209
+Each stochastic passes..
+Mean: 0.7176511287689209
+Variance: 0.051566239446401596
+95% Confidence Interval: (0.6898335814476013, 0.7454686760902405)
+Class 0: 95% CI = [0.01678717392496765, 0.8188451454043388]
+Class 1: 95% CI = [0.18115486763417726, 0.9832128435373306]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.5203819274902344
+Each stochastic passes..
+Mean: 0.5203819274902344
+Variance: 0.08142387866973877
+95% Confidence Interval: (0.48542672395706177, 0.555337131023407)
+Class 0: 95% CI = [0.05056773731485009, 0.9608705565333366]
+Class 1: 95% CI = [0.0391294062137604, 0.9494322836399078]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.7089923024177551
+Each stochastic passes..
+Mean: 0.7089923620223999
+Variance: 0.0425526425242424
+95% Confidence Interval: (0.683722734451294, 0.7342619895935059)
+Class 0: 95% CI = [0.023415720555931337, 0.8300387635827065]
+Class 1: 95% CI = [0.16996123641729366, 0.9765842482447624]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.5288915634155273
+Each stochastic passes..
+Mean: 0.5288916230201721
+Variance: 0.09464384615421295
+95% Confidence Interval: (0.4912054240703583, 0.5665777921676636)
+Class 0: 95% CI = [0.018794714706018574, 0.9710913002490997]
+Class 1: 95% CI = [0.028908690437674526, 0.9812053143978119]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7284649610519409
+Each stochastic passes..
+Mean: 0.7284649610519409
+Variance: 0.04700469225645065
+95% Confidence Interval: (0.7019062638282776, 0.7550236582756042)
+Class 0: 95% CI = [0.03226927388459445, 0.8062051460146904]
+Class 1: 95% CI = [0.19379483163356803, 0.967730700969696]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.6762830018997192
+Each stochastic passes..
+Mean: 0.6762830018997192
+Variance: 0.054013997316360474
+95% Confidence Interval: (0.6478129029273987, 0.7047531008720398)
+Class 0: 95% CI = [0.04385132389143111, 0.8563719168305397]
+Class 1: 95% CI = [0.14362807758152488, 0.9561487287282944]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7294103503227234
+Each stochastic passes..
+Mean: 0.7294103503227234
+Variance: 0.043092772364616394
+95% Confidence Interval: (0.7039808034896851, 0.7548398971557617)
+Class 0: 95% CI = [0.019336211262270808, 0.8133625015616417]
+Class 1: 95% CI = [0.18663747608661654, 0.9806637465953827]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.5585896372795105
+Each stochastic passes..
+Mean: 0.5585896968841553
+Variance: 0.08945854008197784
+95% Confidence Interval: (0.5219504237174988, 0.5952289700508118)
+Class 0: 95% CI = [0.04545077262446287, 0.9595559984445572]
+Class 1: 95% CI = [0.040443975944072015, 0.9545491859316826]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7319637537002563
+Each stochastic passes..
+Mean: 0.7319637537002563
+Variance: 0.04007699340581894
+95% Confidence Interval: (0.707440197467804, 0.7564873099327087)
+Class 0: 95% CI = [0.024987571872770793, 0.7547772154211998]
+Class 1: 95% CI = [0.2452228218317032, 0.9750123992562294]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7755100727081299
+Each stochastic passes..
+Mean: 0.7755101323127747
+Variance: 0.034056406468153
+95% Confidence Interval: (0.7529035210609436, 0.7981167435646057)
+Class 0: 95% CI = [0.016822495264932517, 0.6863492876291275]
+Class 1: 95% CI = [0.31365072354674345, 0.9831774458289146]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7979207038879395
+Each stochastic passes..
+Mean: 0.7979207634925842
+Variance: 0.035312261432409286
+95% Confidence Interval: (0.7749010920524597, 0.8209404349327087)
+Class 0: 95% CI = [0.013659450807608664, 0.7336846366524696]
+Class 1: 95% CI = [0.2663153521716595, 0.9863405302166939]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.8667581081390381
+Each stochastic passes..
+Mean: 0.8667579889297485
+Variance: 0.01438342034816742
+95% Confidence Interval: (0.8520664572715759, 0.8814495205879211)
+Class 0: 95% CI = [0.015150054125115277, 0.4377181939780712]
+Class 1: 95% CI = [0.5622817873954773, 0.9848499298095703]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.8073431253433228
+Each stochastic passes..
+Mean: 0.807343065738678
+Variance: 0.026192091405391693
+95% Confidence Interval: (0.7875177264213562, 0.8271684050559998)
+Class 0: 95% CI = [0.021987819811329253, 0.5893961563706398]
+Class 1: 95% CI = [0.41060381382703787, 0.9780121669173241]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.5653108358383179
+Each stochastic passes..
+Mean: 0.5653108358383179
+Variance: 0.08121384680271149
+95% Confidence Interval: (0.5304007530212402, 0.6002209186553955)
+Class 0: 95% CI = [0.03473228681832553, 0.940156415104866]
+Class 1: 95% CI = [0.05984360584989194, 0.965267725288868]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7845796346664429
+Each stochastic passes..
+Mean: 0.7845796346664429
+Variance: 0.02951105684041977
+95% Confidence Interval: (0.7635356187820435, 0.8056236505508423)
+Class 0: 95% CI = [0.021330294432118542, 0.6794899627566338]
+Class 1: 95% CI = [0.3205100484192372, 0.9786697253584862]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.6220486164093018
+Each stochastic passes..
+Mean: 0.6220486164093018
+Variance: 0.08629026263952255
+95% Confidence Interval: (0.5860639810562134, 0.6580332517623901)
+Class 0: 95% CI = [0.07670868653804064, 0.9823950305581093]
+Class 1: 95% CI = [0.017604949185624726, 0.9232913106679916]
+
+Statistics for sample
+Final prediction: 0
+True label: 1
+Correct: False
+Prediction probability: 0.5955649614334106
+Each stochastic passes..
+Mean: 0.5955649614334106
+Variance: 0.09137170016765594
+95% Confidence Interval: (0.5585359334945679, 0.6325939893722534)
+Class 0: 95% CI = [0.07419999781996015, 0.9788379520177841]
+Class 1: 95% CI = [0.021162065444514155, 0.9257999882102013]
+
+Statistics for sample
+Final prediction: 0
+True label: 0
+Correct: True
+Prediction probability: 0.7033127546310425
+Each stochastic passes..
+Mean: 0.7033127546310425
+Variance: 0.07221966236829758
+95% Confidence Interval: (0.6703924536705017, 0.7362330555915833)
+Class 0: 95% CI = [0.10079236701130875, 0.9863116443157196]
+Class 1: 95% CI = [0.013688373495824638, 0.8992076367139816]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.5096738934516907
+Each stochastic passes..
+Mean: 0.5096738934516907
+Variance: 0.07878928631544113
+95% Confidence Interval: (0.47528883814811707, 0.5440589189529419)
+Class 0: 95% CI = [0.0384213677607477, 0.9546135887503624]
+Class 1: 95% CI = [0.0453864121809602, 0.9615786373615265]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.6272653341293335
+Each stochastic passes..
+Mean: 0.6272653341293335
+Variance: 0.06832506507635117
+95% Confidence Interval: (0.5952450037002563, 0.6592856645584106)
+Class 0: 95% CI = [0.02925377455540002, 0.8848177939653397]
+Class 1: 95% CI = [0.11518220789730554, 0.9707462266087532]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.5463879108428955
+Each stochastic passes..
+Mean: 0.5463879108428955
+Variance: 0.06926920264959335
+95% Confidence Interval: (0.5141471028327942, 0.5786287188529968)
+Class 0: 95% CI = [0.052787252701818964, 0.9129549339413643]
+Class 1: 95% CI = [0.08704503532499079, 0.9472127705812454]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.5608106255531311
+Each stochastic passes..
+Mean: 0.5608106851577759
+Variance: 0.07886648178100586
+95% Confidence Interval: (0.5264087915420532, 0.5952125787734985)
+Class 0: 95% CI = [0.0331385480239988, 0.9425444155931473]
+Class 1: 95% CI = [0.0574555634520948, 0.9668614491820335]
+
+Statistics for sample
+Final prediction: 1
+True label: 0
+Correct: False
+Prediction probability: 0.6815861463546753
+Each stochastic passes..
+Mean: 0.6815862059593201
+Variance: 0.0610072985291481
+95% Confidence Interval: (0.6513291001319885, 0.7118433117866516)
+Class 0: 95% CI = [0.023783983662724505, 0.8879715576767921]
+Class 1: 95% CI = [0.11202840134501459, 0.9762159883975983]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.8838566541671753
+Each stochastic passes..
+Mean: 0.8838566541671753
+Variance: 0.011327577754855156
+95% Confidence Interval: (0.8708188533782959, 0.8968944549560547)
+Class 0: 95% CI = [0.012102254433557395, 0.3635532706975937]
+Class 1: 95% CI = [0.6364467591047287, 0.9878977462649345]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.7789720296859741
+Each stochastic passes..
+Mean: 0.7789719104766846
+Variance: 0.03887677192687988
+95% Confidence Interval: (0.754818320274353, 0.8031255006790161)
+Class 0: 95% CI = [0.016903275158256292, 0.73808204382658]
+Class 1: 95% CI = [0.26191796734929096, 0.9830967262387276]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.6330589652061462
+Each stochastic passes..
+Mean: 0.6330589652061462
+Variance: 0.07961812615394592
+95% Confidence Interval: (0.5984935164451599, 0.6676244139671326)
+Class 0: 95% CI = [0.022401980124413974, 0.9550933837890625]
+Class 1: 95% CI = [0.04490661434829235, 0.9775980040431023]
+
+Statistics for sample
+Final prediction: 1
+True label: 1
+Correct: True
+Prediction probability: 0.8707475662231445
+Each stochastic passes..
+Mean: 0.8707476854324341
+Variance: 0.010548153892159462
+95% Confidence Interval: (0.8581663966178894, 0.8833289742469788)
+Class 0: 95% CI = [0.01613999763503671, 0.37557096034288406]
+Class 1: 95% CI = [0.6244290024042131, 0.9838600382208824]
+==========All samples evaluated==========
+
+Expected Calibration Error: 0.08926868066191675
+Maximum Calibration Error: 0.15425699949264526

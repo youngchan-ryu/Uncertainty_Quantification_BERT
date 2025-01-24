@@ -3,6 +3,7 @@ import os
 from tqdm import tqdm
 import torch
 import numpy as np
+import matplotlib.pyplot as plt
 from transformers import BertForSequenceClassification
 
 def calculate_accuracy(preds, labels):
@@ -95,6 +96,97 @@ def enable_mc_dropout(model, dropout_rate):
 def disable_mc_dropout(model):
     model.eval()
 
+def reliability_diagram(confidence_list: list, is_correct_list: list):
+    num_bins = 10
+    bin_edges = np.linspace(0.0, 1.0, num_bins + 1)  # Bin edges from 0 to 1
+    bin_indices = np.digitize(confidence_list, bin_edges, right=True)
+    bin_middlepoint = (bin_edges[1:] + bin_edges[:-1])/2
+
+    bin_confidences = []
+    bin_accuracies = []
+    bin_gaps = []
+    confidence_nparray = np.array(confidence_list)
+    is_correct_nparray = np.array(is_correct_list)
+    # ECE is weighted average of calibration error in each bin
+    # MCE is maximum calibration error in each bin
+    cum_ce = 0
+    mce = 0
+
+    # organizing bin elements
+    for i in range(1, num_bins + 1):
+        indices = np.where(bin_indices == i)[0]  # Get indices of elements in the bin
+        if len(indices) > 0:
+            avg_confidence = np.mean(confidence_nparray[indices])  # Average confidence
+            avg_accuracy = np.mean(is_correct_nparray[indices])  # Accuracy as mean of correct labels
+            gap = avg_confidence - avg_accuracy  # Gap between confidence and accuracy
+
+            bin_confidences.append(avg_confidence)
+            bin_accuracies.append(avg_accuracy)
+            bin_gaps.append(gap)
+            cum_ce += np.abs(gap) * len(indices)
+            mce = max(mce, np.abs(gap))
+        else:
+            bin_confidences.append(0)
+            bin_accuracies.append(0)
+            bin_gaps.append(0)
+    
+    ece = cum_ce / len(confidence_list)
+
+    # ECE/MCE statistics
+    print("==========All samples evaluated==========")
+    print(f"\nExpected Calibration Error: {ece}")
+    print(f"Maximum Calibration Error: {mce}")
+
+    # drawing plot
+    bar_width = 0.08  # Width of the bars
+    plt.figure(figsize=(8, 6))
+
+    plt.bar(bin_edges[:-1], bin_accuracies, width=bar_width, align='edge', color='blue', edgecolor='black', label="Outputs")
+    plt.bar(bin_edges[:-1], bin_gaps, width=bar_width, align='edge', color='pink', alpha=0.7, label="Gap", bottom=bin_accuracies)
+    plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label="Perfect Calibration")
+
+    plt.text(0.7, 0.1, f'ECE={ece:.4f}', fontsize=14, bbox=dict(facecolor='lightgray', alpha=0.5))
+
+    plt.xlabel('Confidence')
+    plt.ylabel('Accuracy')
+    plt.title('Reliability Diagram')
+    plt.legend()
+    plt.grid(True)
+    plt.xlim([0, 1])
+    plt.ylim([0, 1])
+    plt.savefig('test_result/reliability_diagram_box.png', dpi=300, bbox_inches='tight')
+
+
+def uncertainty_statistics_one_sample(pred_list: list, probabilities_list: list, probability_sample: list, sample_prediction: int, label: int, is_correct: int):
+    # prob[1] if pred is 1, prob[0] if pred is 0
+    sample_pred_probabilities_list = [prob[sample_prediction] for prob in probabilities_list]
+    sample_pred_prob = probability_sample[sample_prediction] 
+
+    # Calculate uncertainty
+    mean = torch.mean(torch.tensor(sample_pred_probabilities_list), axis=0)
+    variance = torch.var(torch.tensor(sample_pred_probabilities_list), axis=0)
+    ci_95 = 1.96 * torch.sqrt(variance / len(pred_list))
+
+    confidence_level = 0.95
+    lower_percentile = (1 - confidence_level) / 2 * 100  # 2.5% for 95% CI
+    upper_percentile = (1 + confidence_level) / 2 * 100  # 97.5% for 95% CI
+
+    # Compute confidence intervals for each class
+    confidence_intervals = np.percentile(probabilities_list, [lower_percentile, upper_percentile], axis=0)
+
+    print(f"\nStatistics for sample")
+    print(f"Final prediction: {sample_prediction}")
+    print(f"True label: {label}")
+    print(f"Correct: {True if is_correct else False}")
+    print(f"Prediction probability: {sample_pred_prob}")
+    print(f"Each stochastic passes..")
+    print(f"Mean: {mean}")
+    print(f"Variance: {variance}")
+    print(f"95% Confidence Interval: ({mean - ci_95}, {mean + ci_95})")
+    # Print the results
+    for i in range(2):
+        print(f"Class {i}: 95% CI = [{confidence_intervals[0, i]}, {confidence_intervals[1, i]}]")
+
 def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate):
     # Conventional evaluating function
     if not os.path.exists(model_save_path):
@@ -111,8 +203,11 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
     
     ## UQ
     enable_mc_dropout(model, dropout_rate)
-    num_samples = 1
+    # Settings
+    num_samples = 32
     iteration_sample = 256
+    threshold = 0.5
+
     if test_dataloader.batch_size != 1:
         raise ValueError("Batch size of test_dataloader must be 1 for uncertainty evaluation")
     # Create a new dataset where each element is the first element of the original test_dataloader
@@ -122,7 +217,7 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
         repeated_dataset.append([test_dataloader.dataset[i]] * iteration_sample)
 
     confidence_list = []
-    accuracy_list = []
+    is_correct_list = []
     
     for i, sample_dataset in tqdm(enumerate(repeated_dataset)):
         sample_dataloader = torch.utils.data.DataLoader(
@@ -130,9 +225,9 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
             batch_size=16
         )
 
-        pred_list = []
-        logits_list = []
-        correct_sample = 0
+        pred_list = [] # [iteration_sample] : individual prediction within one sample is not important
+        probabilities_list = [] # [iteration_sample, 2] 
+        label_counter = 0 # counter checking for all sample label are same
 
         for sample in tqdm(sample_dataloader):
             token_ids = sample[0]
@@ -147,48 +242,27 @@ def evaluate_uncertainty(test_dataloader, model_save_path, device, dropout_rate)
                     token_type_ids = None,
                     return_dict=False)
 
-            pred_flat = torch.argmax(logits, axis=1).flatten() # [iteration_sample]
+            pred_flat = torch.argmax(logits, axis=1).flatten() 
             pred_list += pred_flat.tolist() 
-            logits_list += logits.tolist() # [iteration_sample, 2] 
-            correct_sample += torch.sum(pred_flat == labels).item()
+            probabilities_list += torch.nn.functional.softmax(logits, dim=1).tolist() 
+            label_counter += torch.sum(labels)
 
-        probabilities = torch.nn.functional.softmax(torch.tensor(logits_list), dim=1) # [iteration_sample, 2] 
-        # prob[1] if pred is 1, prob[0] if pred is 0
-        probabilities_tensor = torch.tensor([prob[1] if pred == 1 else prob[0] for pred, prob in zip(pred_list, probabilities)]) # [iteration_sample]
+        # Check if sum of labels are iteration_sample (which means all labels are 1) or 0 (which means all labels are 0)
+        if label_counter != 0 and label_counter != iteration_sample:
+            raise ValueError("All labels in one sample must be same")
+        else:
+            label = 1 if label_counter == iteration_sample else 0
+        
+        probability_sample = torch.mean(torch.tensor(probabilities_list), dim=0) # [2]
+        sample_prediction = 1 if probability_sample[1] > threshold else 0
+        is_correct = 1 if sample_prediction == label else 0
 
-        # Calculate uncertainty
-        mean = torch.mean(probabilities_tensor, axis=0)
-        variance = torch.var(probabilities_tensor, axis=0)
-        accuracy = correct_sample / len(pred_list)
-        ci_95 = 1.96 * torch.sqrt(variance / len(pred_list))
+        confidence = probability_sample[sample_prediction]
+        confidence_list.append(confidence)
+        is_correct_list.append(is_correct)
 
-        confidence_level = 0.95
-        lower_percentile = (1 - confidence_level) / 2 * 100  # 2.5% for 95% CI
-        upper_percentile = (1 + confidence_level) / 2 * 100  # 97.5% for 95% CI
+        uncertainty_statistics_one_sample(pred_list, probabilities_list, probability_sample, sample_prediction, label, is_correct)
 
-        # Compute confidence intervals for each class
-        confidence_intervals = np.percentile(probabilities.cpu().numpy(), [lower_percentile, upper_percentile], axis=0)
-
-        print(f"\nStatistics for sample {i+1}")
-        print(f"Mean: {mean}")
-        print(f"Variance: {variance}")
-        print(f"Accuracy: {accuracy}")
-        print(f"95% Confidence Interval: ({mean - ci_95}, {mean + ci_95})")
-        # Print the results
-        for i in range(probabilities.shape[1]):
-            print(f"Class {i}: 95% CI = [{confidence_intervals[0, i]}, {confidence_intervals[1, i]}]")
-
-        confidence_list.append(mean)
-        accuracy_list.append(accuracy)
-
-    # Calculate ECE and MCE
-    confidence_list = torch.tensor(confidence_list)
-    accuracy_list = torch.tensor(accuracy_list)
-    ece = torch.mean(torch.abs(confidence_list - accuracy_list))
-    mce = torch.max(torch.abs(confidence_list - accuracy_list))
-
-    print("==========All samples evaluated==========")
-    print(f"\nExpected Calibration Error: {ece}")
-    print(f"Maximum Calibration Error: {mce}")
+    reliability_diagram(confidence_list, is_correct_list)
 
     disable_mc_dropout(model)

@@ -1,0 +1,54 @@
+Evaluating the model...
+Loaded Preprocessing data
+Tokenized data loaded from tokenized_data.pkl
+Tokenized Data ready
+DataLoaders ready
+8 GPU exists
+cuda
+Evaluating with uncertainty quantification
+Model loaded from /scratch/connectome/ycryu/UQ/bert/bert-checkpoints/checkpoint_20250123_061001_epoch10.pt
+==========Evaluation started==========
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+> /scratch/connectome/ycryu/UQ/bert/evaluate.py(234)evaluate_uncertainty()
+-> for sample in tqdm(sample_dataloader):
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) (Pdb) (Pdb) 

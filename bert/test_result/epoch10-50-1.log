@@ -1,0 +1,64 @@
+Evaluating the model...
+Loaded Preprocessing data
+Tokenized data loaded from tokenized_data.pkl
+Tokenized Data ready
+DataLoaders ready
+8 GPU exists
+cuda
+Evaluating with uncertainty quantification
+Model loaded from /scratch/connectome/ycryu/UQ/bert/bert-checkpoints/checkpoint_20250123_061001_epoch10.pt
+==========Evaluation started==========
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+Enabling MC Dropout for Dropout(p=0.5, inplace=False) - p=0.5
+
+Statistics for sample
+Final prediction: 0
+True label: 1
+Correct: False
+Prediction probability: 0.6379132866859436
+Each stochastic passes..
+Mean: 0.6379132270812988
+Variance: 0.03671468049287796
+95% Confidence Interval: (0.61444091796875, 0.6613855361938477)
+Class 0: 95% CI = [0.18881984986364844, 0.9188050106167793]
+Class 1: 95% CI = [0.0811950443312526, 0.8111801669001579]
+==========All samples evaluated==========
+
+Expected Calibration Error: 0.6379132866859436
+Maximum Calibration Error: 0.6379132866859436

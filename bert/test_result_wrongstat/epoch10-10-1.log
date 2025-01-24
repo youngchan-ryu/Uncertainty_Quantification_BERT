@@ -1,0 +1,125 @@
+Evaluating the model...
+Loaded Preprocessing data
+Tokenized data loaded from tokenized_data.pkl
+Tokenized Data ready
+DataLoaders ready
+Evaluating with uncertainty quantification
+Model loaded from /global/homes/y/ycryu/wip/UQ/bert/checkpoints/checkpoint_20250110_084205_epoch10.pt
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+Enabling MC Dropout for Dropout(p=0.1, inplace=False) - p=0.1
+
+Statistics for sample 1
+Mean: 0.999987006187439
+Variance: 3.3678723004859634e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999862909317017, 0.9999877214431763)
+Class 0: 95% CI = [7.290270445992064e-06, 2.6442757189215627e-05]
+Class 1: 95% CI = [0.9999735504388809, 0.9999927282333374]
+
+Statistics for sample 2
+Mean: 0.999988853931427
+Variance: 7.703955529070328e-12
+Accuracy: 1.0
+95% Confidence Interval: (0.9999884963035583, 0.9999892115592957)
+Class 0: 95% CI = [7.2684578640291875e-06, 1.808612091735995e-05]
+Class 1: 95% CI = [0.9999818801879883, 0.9999927282333374]
+
+Statistics for sample 3
+Mean: 0.9999873638153076
+Variance: 2.4941331985828263e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999867677688599, 0.9999879598617554)
+Class 0: 95% CI = [0.9999725520610809, 0.9999934285879135]
+Class 1: 95% CI = [6.6018498046105395e-06, 2.746934387687361e-05]
+
+Statistics for sample 4
+Mean: 0.9999900460243225
+Variance: 1.949450670335473e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999895095825195, 0.9999905824661255)
+Class 0: 95% CI = [0.9999770820140839, 0.9999943971633911]
+Class 1: 95% CI = [5.5762041029083775e-06, 2.2938570737096597e-05]
+
+Statistics for sample 5
+Mean: 0.9999761581420898
+Variance: 1.1456886134242339e-10
+Accuracy: 1.0
+95% Confidence Interval: (0.9999748468399048, 0.9999774694442749)
+Class 0: 95% CI = [0.9999538958072662, 0.9999905675649643]
+Class 1: 95% CI = [9.463933224651557e-06, 4.611985514202388e-05]
+
+Statistics for sample 6
+Mean: 0.999992847442627
+Variance: 3.918517853945813e-12
+Accuracy: 1.0
+95% Confidence Interval: (0.9999926090240479, 0.999993085861206)
+Class 0: 95% CI = [0.999988242983818, 0.999995544552803]
+Class 1: 95% CI = [4.478618109260424e-06, 1.1773239634749189e-05]
+
+Statistics for sample 7
+Mean: 0.9999894499778748
+Variance: 1.1783417991351186e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999890327453613, 0.9999898672103882)
+Class 0: 95% CI = [0.9999817609786987, 0.9999938011169434]
+Class 1: 95% CI = [6.174395821290091e-06, 1.826173388508323e-05]
+
+Statistics for sample 8
+Mean: 0.9999914765357971
+Variance: 7.1400906020979704e-12
+Accuracy: 1.0
+95% Confidence Interval: (0.9999911785125732, 0.999991774559021)
+Class 0: 95% CI = [0.9999851137399673, 0.9999953061342239]
+Class 1: 95% CI = [4.690975970333967e-06, 1.49155725921446e-05]
+
+Statistics for sample 9
+Mean: 0.9999895095825195
+Variance: 1.382125403709411e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999890327453613, 0.9999899864196777)
+Class 0: 95% CI = [0.999978631734848, 0.9999940693378448]
+Class 1: 95% CI = [5.934801038165461e-06, 2.1350793531382806e-05]
+
+Statistics for sample 10
+Mean: 0.99998539686203
+Variance: 2.1407342912227456e-11
+Accuracy: 1.0
+95% Confidence Interval: (0.9999848008155823, 0.9999859929084778)
+Class 0: 95% CI = [8.29111206712696e-06, 2.7582113034441136e-05]
+Class 1: 95% CI = [0.9999723881483078, 0.9999917298555374]
